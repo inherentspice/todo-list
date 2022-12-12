@@ -89,3 +89,29 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.sidebar {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 200px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.sidebar button {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  color: var(--color-button-text);
+  background-color: var(--color-button);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.sidebar button:hover {
+  background-color: var(--color-primary);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
