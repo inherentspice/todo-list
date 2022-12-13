@@ -8,27 +8,32 @@ const getTodos = () => {
     {
       "id": "62977",
       "name": "Finish Scaffolding",
-      "isDone": true
+      "isDone": true,
+      "priority": "blue"
     },
     {
       "id": "34156",
       "name": "Implement Dark/Light Mode",
-      "isDone": true
+      "isDone": true,
+      "priority": "green"
     },
     {
       "id": "99558",
       "name": "Make Beautiful CSS",
-      "isDone": false
+      "isDone": false,
+      "priority": "orange"
     },
     {
       "id": "62534",
       "name": "Create Sidebar",
-      "isDone": false
+      "isDone": false,
+      "priority": "red"
     },
     {
       "id": "98742",
       "name": "Implement Delete Todo Function",
-      "isDone": false
+      "isDone": false,
+      "priority": "black"
     }
   ]
   return todos;
@@ -36,13 +41,12 @@ const getTodos = () => {
 
 export default async function TodoList() {
   const todos = getTodos();
-  console.log(todos);
   return (
-    <div>
+    <div className="list-todos">
       <ul style={{ listStyleType: "none", padding: 0 }}>
         {todos.map((todo) => {
           return (
-            <li key={todo.id} style={{ padding: "5px 0" }}>
+            <li key={todo.id} className="single-todo" style={{backgroundColor: todo.priority}}>
 
               {/*
                 render in seperate component to keep the rest of this component

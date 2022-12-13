@@ -12,7 +12,7 @@ export default function AddTodo( {} ) {
   let [color, setColor] = useState("");
 
   return (
-    <div>
+    <div className="add-todo-cont">
       <input
         type="text"
         onChange={(e) => setName(e.target.value)}

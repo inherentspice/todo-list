@@ -31,6 +31,13 @@ p {
   padding: 0;
 }
 
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* darkmode slider */
 .switch {
   position: relative;
@@ -90,6 +97,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* sidebar */
 .sidebar {
   position: absolute;
   left: 0;
@@ -118,4 +126,33 @@ input:checked + .slider:before {
 .sidebar button:hover {
   background-color: var(--color-primary);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* list of todos */
+
+.list-todos {
+  height: 60%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* add todo */
+
+.add-todo-cont {
+  display: flex;
+  margin-top: 3rem;
+  align-self: flex-end;
+}
+
+/* single todo */
+
+.single-todo {
+  background-color: aqua;
+  margin: 0.5rem;
+  border-radius: 124px 124px 124px 124px;
+  padding: 1rem;
+  color: #fff;
 }
