@@ -22,6 +22,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-primary);
   font-size: 16px;
+  margin: 0;
 }
 
 h1,
@@ -36,6 +37,26 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+/* header */
+
+.header-cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-button);
+  padding: 2rem;
+  color: var(--color-background);
+}
+
+.header-cont>h1 {
+  margin-left: 1rem;
+}
+
+.header-cont>form {
+  margin-right: 1rem;
 }
 
 /* darkmode slider */
@@ -75,11 +96,11 @@ p {
 }
 
 input:checked + .slider {
-  background-color: var(--color-button);
+  background-color: #3d486c;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--color-button);
+  box-shadow: 0 0 1px #3d486c;
 }
 
 input:checked + .slider:before {
