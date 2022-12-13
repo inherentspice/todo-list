@@ -1,24 +1,24 @@
 
-import Darkmode from "./darkmode";
-
 function Sidebar() {
-  const categories = ["Urgent", "Impossible", "Space"];
+  const topics = ["Urgent", "Impossible", "Space"];
 
   return (
     <div className="sidebar">
-      <Darkmode/>
+      <h2>Todo Lists</h2>
       <button>
         Main
       </button>
-      <button>+ Add New Todo List</button>
+      <button>+ New List</button>
       <hr />
-      {categories.map((category) => (
+      <h2>Topics</h2>
+      {topics.map((topic) => (
         <button
-          key={category}
+          key={topic}
         >
-          {category}
+          {topic}
         </button>
       ))}
+      <button>+ New Topic</button>
     </div>
   );
 }

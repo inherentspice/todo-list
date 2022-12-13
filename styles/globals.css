@@ -92,12 +92,16 @@ input:checked + .slider:before {
 
 .sidebar {
   position: absolute;
-  top: 50%;
   left: 0;
+  top: 50%;
   transform: translateY(-50%);
   width: 200px;
+  height: 100%;
   padding: 16px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .sidebar button {
