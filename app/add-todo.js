@@ -12,7 +12,7 @@ export default function AddTodo( {} ) {
   let [color, setColor] = useState("");
 
   return (
-    <div>
+    <div className="add-todo-cont">
       <input
         type="text"
         onChange={(e) => setName(e.target.value)}
@@ -20,11 +20,11 @@ export default function AddTodo( {} ) {
       />
       <select onChange={(e) => setColor(e.target.value)} value={color}>
         <option value="">Choose a priority color...</option>
-        <option value="green" style={{backgroundColor: "green"}}>Easy-Peasy</option>
-        <option value="blue" style={{backgroundColor: "blue"}}>Use to Procrastinate</option>
-        <option value="red" style={{backgroundColor: "red"}}>Urgent</option>
-        <option value="orange" style={{backgroundColor: "orange"}}>Burning Hole in Brain</option>
-        <option value="black" style={{backgroundColor: "black"}}>I Do Not Even Want to Think About It</option>
+        <option value="green" style={{backgroundColor: "green"}}></option>
+        <option value="blue" style={{backgroundColor: "blue"}}></option>
+        <option value="orange" style={{backgroundColor: "orange"}}></option>
+        <option value="red" style={{backgroundColor: "red"}}></option>
+        <option value="black" style={{backgroundColor: "black"}}></option>
       </select>
 
       <button onClick={async () => {

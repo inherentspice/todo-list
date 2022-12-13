@@ -21,13 +21,17 @@ export default function SingleTodo({ todo }) {
   const router = useRouter();
   return (
     <>
-      <input
-        type="checkbox"
-        onChange={(e) => update(todo.id, e.target.checked, router.refresh)}
-        checked={todo.isDone}
-      />
-      <span>{todo.name}</span>
-      <button onClick={(e) => deleteTodo(todo.id, router.refresh)}>Delete</button>
+      <div>
+        <input
+          type="checkbox"
+          onChange={(e) => update(todo.id, e.target.checked, router.refresh)}
+          checked={todo.isDone}
+        />
+        <span>{todo.name}</span>
+      </div>
+      <div>
+        <button onClick={(e) => deleteTodo(todo.id, router.refresh)}>Delete</button>
+      </div>
     </>
   );
 }

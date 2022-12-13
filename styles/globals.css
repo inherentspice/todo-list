@@ -22,6 +22,7 @@ body {
   background-color: var(--color-background);
   color: var(--color-primary);
   font-size: 16px;
+  margin: 0;
 }
 
 h1,
@@ -29,6 +30,33 @@ h3,
 p {
   margin: 0;
   padding: 0;
+}
+
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* header */
+
+.header-cont {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-button);
+  padding: 2rem;
+  color: var(--color-background);
+}
+
+.header-cont>h1 {
+  margin-left: 1rem;
+}
+
+.header-cont>form {
+  margin-right: 1rem;
 }
 
 /* darkmode slider */
@@ -68,11 +96,11 @@ p {
 }
 
 input:checked + .slider {
-  background-color: var(--color-button);
+  background-color: #3d486c;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--color-button);
+  box-shadow: 0 0 1px #3d486c;
 }
 
 input:checked + .slider:before {
@@ -90,6 +118,7 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+/* sidebar */
 .sidebar {
   position: absolute;
   left: 0;
@@ -118,4 +147,38 @@ input:checked + .slider:before {
 .sidebar button:hover {
   background-color: var(--color-primary);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* list of todos */
+
+.list-todos {
+  height: 60%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* add todo */
+
+.add-todo-cont {
+  display: flex;
+  margin: 3rem 1rem;
+  align-self: flex-end;
+}
+
+/* single todo */
+
+.single-todo {
+  background-color: aqua;
+  margin: 0.5rem;
+  border-radius: 124px 124px 124px 124px;
+  padding: 1rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
 }
