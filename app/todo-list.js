@@ -8,16 +8,26 @@ const getTodos = () => {
     {
       "id": "62977",
       "name": "Finish Scaffolding",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": "34156",
       "name": "Implement Dark/Light Mode",
-      "isDone": false
+      "isDone": true
     },
     {
       "id": "99558",
       "name": "Make Beautiful CSS",
+      "isDone": false
+    },
+    {
+      "id": "62534",
+      "name": "Create Sidebar",
+      "isDone": false
+    },
+    {
+      "id": "98742",
+      "name": "Implement Delete Todo Function",
       "isDone": false
     }
   ]
