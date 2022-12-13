@@ -156,15 +156,15 @@ input:checked + .slider:before {
   width: 60%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 /* add todo */
 
 .add-todo-cont {
   display: flex;
-  margin-top: 3rem;
+  margin: 3rem 1rem;
   align-self: flex-end;
 }
 
@@ -176,4 +176,9 @@ input:checked + .slider:before {
   border-radius: 124px 124px 124px 124px;
   padding: 1rem;
   color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
 }
