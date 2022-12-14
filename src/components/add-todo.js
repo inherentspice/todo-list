@@ -1,11 +1,6 @@
 import { useState } from "react";
 
-async function addTodo(name, color) {
-  // create post request for new todo with the given name and color
-
-}
-
-export default function AddTodo() {
+export default function AddTodo( {addFunction} ) {
   let [name, setName] = useState("");
   let [color, setColor] = useState("");
 
@@ -26,7 +21,7 @@ export default function AddTodo() {
       </select>
 
       <button onClick={async () => {
-        await addTodo(name, color);
+        await addFunction(name, color);
         setName("");
         setColor("");
       }}

@@ -3,39 +3,7 @@ import SingleTodo from "./single-todo";
 // function that will get the todo data, but until the backend is created
 // will just hardcode data
 
-export default function TodoList() {
-  const todos = [
-    {
-      "id": "62977",
-      "name": "Finish Scaffolding",
-      "isDone": true,
-      "priority": "blue"
-    },
-    {
-      "id": "34156",
-      "name": "Implement Dark/Light Mode",
-      "isDone": true,
-      "priority": "green"
-    },
-    {
-      "id": "99558",
-      "name": "Make Beautiful CSS",
-      "isDone": false,
-      "priority": "orange"
-    },
-    {
-      "id": "62534",
-      "name": "Create Sidebar",
-      "isDone": false,
-      "priority": "red"
-    },
-    {
-      "id": "98742",
-      "name": "Implement Delete Todo Function",
-      "isDone": false,
-      "priority": "black"
-    }
-  ]
+export default function TodoList( { todos, deleteToDo, updateToDo } ) {
   return (
     <div className="list-todos">
       <ul style={{ listStyleType: "none", padding: 0 }}>
@@ -48,7 +16,7 @@ export default function TodoList() {
                 using server side rendering rather than client side
               */}
 
-              <SingleTodo todo={todo} />
+              <SingleTodo todo={todo} deleteToDo={deleteToDo} updateToDo={updateToDo}/>
             </li>
           );
         })}
