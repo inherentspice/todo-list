@@ -2,9 +2,9 @@ import SingleTodo from "./single-todo";
 
 // function that will get the todo data, but until the backend is created
 // will just hardcode data
-const getTodos = () => {
-  // create test data--change to async when making actual call
-  let todos = [
+
+export default function TodoList() {
+  const todos = [
     {
       "id": "62977",
       "name": "Finish Scaffolding",
@@ -36,11 +36,6 @@ const getTodos = () => {
       "priority": "black"
     }
   ]
-  return todos;
-}
-
-export default async function TodoList() {
-  const todos = getTodos();
   return (
     <div className="list-todos">
       <ul style={{ listStyleType: "none", padding: 0 }}>

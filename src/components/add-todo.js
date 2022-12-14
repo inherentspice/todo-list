@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 
 async function addTodo(name, color) {
@@ -7,7 +5,7 @@ async function addTodo(name, color) {
 
 }
 
-export default function AddTodo( {} ) {
+export default function AddTodo() {
   let [name, setName] = useState("");
   let [color, setColor] = useState("");
 

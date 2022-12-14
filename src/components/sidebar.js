@@ -1,4 +1,3 @@
-
 function Sidebar() {
   const topics = ["Urgent", "Impossible", "Space"];
 

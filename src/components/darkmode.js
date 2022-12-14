@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useMemo, useRef, useEffect, useState } from "react";
 
 function Darkmode() {
