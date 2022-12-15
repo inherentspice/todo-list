@@ -20,8 +20,8 @@ export default function AddTodo( {addFunction} ) {
         <option value="black" style={{backgroundColor: "black"}}></option>
       </select>
 
-      <button onClick={async () => {
-        await addFunction(name, color);
+      <button onClick={(e) => {
+        addFunction(e, name, color);
         setName("");
         setColor("");
       }}
