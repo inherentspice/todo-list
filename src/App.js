@@ -64,8 +64,20 @@ export default function App() {
     setTodos([...todos]);
   }
 
-  function addToDo(name, color) {
-    console.log('here')
+  function addToDo(e, name, color) {
+    // prevent the form from submitting
+    e.preventDefault()
+
+    // create a new todo object
+    const newTodo = {
+      id: Date.now(),
+      name: name,
+      isDone: false,
+      priority: color
+    };
+
+    // add the new todo to the list of todos
+    setTodos([...todos, newTodo]);
   }
 
   return (

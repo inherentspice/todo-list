@@ -168,6 +168,20 @@ input:checked + .slider:before {
   align-self: flex-end;
 }
 
+.add-todo-cont button {
+  font-size: 16px;
+  padding: 4px 8px;
+  color: var(--color-button-text);
+  background-color: var(--color-button);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.add-todo-cont button:hover {
+  background-color: var(--color-primary);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+}
+
 /* single todo */
 
 .single-todo {
