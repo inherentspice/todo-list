@@ -59,6 +59,10 @@ p {
   margin-right: 1rem;
 }
 
+.title-image-cont {
+  display: flex;
+  align-items: center;
+}
 /* darkmode slider */
 .switch {
   position: relative;
