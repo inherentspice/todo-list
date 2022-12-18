@@ -60,12 +60,18 @@ export default function App() {
 
     // create a new todo object
     const newTodo = {
-      id: Date.now(),
-      name: name,
-      isDone: false,
+      content: name,
       priority: color
     };
 
+    const createTodo = async () => {
+      try {
+        await TodoService.create(newTodo);
+      } catch (error) {
+        setError(error);
+      }
+    }
+    createTodo();
     // add the new todo to the list of todos
     setTodos([...todos, newTodo]);
   }
