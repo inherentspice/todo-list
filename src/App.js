@@ -48,16 +48,18 @@ export default function App() {
 
   //update item from todo list
   function updateToDo(id) {
-    // Find the item by its id
-    const item = todos.find(item => item.id === id);
-
-    // If the item was found, update its "isDone" property
-    if (item) {
-      item.isDone = !item.isDone;
+    const updatedTodo = todos.find(item => item.id === id);
+    if (updatedTodo) {
+      updatedTodo.isDone = !updatedTodo.isDone;
     }
 
-    // Set the new state
-    setTodos([...todos]);
+    TodoService.update(id, updatedTodo)
+      .then(response => {
+        setTodos([...todos]);
+      })
+      .catch(error => {
+        setError(error);
+      })
   }
 
   function addToDo(e, name, color) {
