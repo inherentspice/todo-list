@@ -10,7 +10,7 @@ export default function SingleTodo({ todo, deleteToDo, updateToDo }) {
           onChange={(e) => updateToDo(todo.id)}
           checked={todo.isDone}
         />
-        <span>{todo.name}</span>
+        <span>{todo.content}</span>
       </div>
       <div>
         <button onClick={(e) => deleteToDo(todo.id)}>Delete</button>
