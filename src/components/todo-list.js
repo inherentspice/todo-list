@@ -7,7 +7,7 @@ export default function TodoList( { todos, deleteToDo, updateToDo } ) {
   return (
     <div className="list-todos">
       <ul style={{ listStyleType: "none", padding: 0 }}>
-        {todos.map((todo) => {
+        {Array.from(todos).map((todo) => {
           return (
             <li key={todo.id} className="single-todo" style={{backgroundColor: todo.priority}}>
 
