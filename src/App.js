@@ -36,8 +36,14 @@ export default function App() {
 
   //delete item from todo list
   function deleteToDo(id) {
-    const todosFiltered = todos.filter((todo) => todo.id !== id);
-    setTodos(() => todosFiltered);
+    TodoService.deleteOne(id)
+      .then(response => {
+        const todosFiltered = todos.filter((todo) => todo.id !== id);
+        setTodos(todosFiltered);
+      })
+      .catch(error => {
+        setError(error);
+      });
   }
 
   //update item from todo list
@@ -72,7 +78,6 @@ export default function App() {
       }
     }
     createTodo();
-    // add the new todo to the list of todos
     setTodos([...todos, newTodo]);
   }
 
