@@ -4,14 +4,16 @@ import ToDoList from "./components/todo-list";
 import Sidebar from "./components/sidebar";
 import Header from "./components/header";
 import TodoService from "./services/todo";
+import TodoListService from "./services/todoLists";
 import './App.css';
 import ErrorMessage from "./components/error-message";
 import LoadingIndicator from "./components/loading-indicator";
 
 export default function App() {
-  const [todos, setTodos] = useState('');
+  const [todos, setTodos] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [todoList, setTodoList] = useState("");
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
@@ -33,6 +35,21 @@ export default function App() {
     };
     fetchTodos();
   }, []);
+
+  useEffect(() => {
+    const fetchTodoLists = async () => {
+      try {
+        const response = await TodoListService.getAll();
+        setTodoList(() => response.data)
+      } catch (error) {
+        setError(error);
+      }
+    }
+    fetchTodoLists();
+
+  }, []);
+
+  console.log(todoList);
 
   //delete item from todo list
   function deleteToDo(id) {
@@ -83,10 +100,26 @@ export default function App() {
     setTodos([...todos, newTodo]);
   }
 
+  // toggle the active todolist
+  const toggleTodoList = (listId) => {
+
+    const updatedTodoList = todoList.find((list) => list.id === listId);
+    if (updatedTodoList) {
+      updatedTodoList.toggled = !updatedTodoList.toggled;
+    }
+    setTodoList(todoList.map((list) => (list.id === listId ?
+      updatedTodoList :
+      {
+        content: list.content,
+        toggled: false,
+      }
+      )));
+  }
+
   return (
     <div className="app-container">
       <Header />
-      <Sidebar />
+      <Sidebar todoList={todoList} toggleTodoList={toggleTodoList}/>
       <AddTodo addFunction={addToDo} />
       {error && <ErrorMessage message={error.message} />}
       {loading && <LoadingIndicator />}
