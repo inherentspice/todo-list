@@ -101,12 +101,14 @@ export default function App() {
   }
 
   // toggle the active todolist
-  const toggleTodoList = (listId) => {
+  function toggleTodoList(listId) {
 
     const updatedTodoList = todoList.find((list) => list.id === listId);
+
     if (updatedTodoList) {
       updatedTodoList.toggled = !updatedTodoList.toggled;
     }
+
     setTodoList(todoList.map((list) => (list.id === listId ?
       updatedTodoList :
       {
@@ -116,10 +118,24 @@ export default function App() {
       )));
   }
 
+  async function addTodoList(e, name) {
+    e.preventDefault();
+    const newTodoList = {content: name};
+
+    try {
+      await TodoListService.create(newTodoList);
+      // fetch the updated list of todo lists from the database
+      const response = await TodoListService.getAll();
+      setTodoList(response.data);
+    } catch (error) {
+      setError(error);
+    }
+  }
+
   return (
     <div className="app-container">
       <Header />
-      <Sidebar todoList={todoList} toggleTodoList={toggleTodoList}/>
+      <Sidebar todoList={todoList} toggleTodoList={toggleTodoList} addFunction={addTodoList}/>
       <AddTodo addFunction={addToDo} />
       {error && <ErrorMessage message={error.message} />}
       {loading && <LoadingIndicator />}

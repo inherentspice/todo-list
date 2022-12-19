@@ -1,5 +1,8 @@
-function Sidebar( {todoList, toggleTodoList} ) {
-  const topics = ["Urgent", "Impossible", "Space"];
+import { useState } from "react";
+
+function Sidebar( {todoList, toggleTodoList, addFunction} ) {
+
+  const [newList, setNewList] = useState("")
 
   return (
     <div className="sidebar">
@@ -14,17 +17,26 @@ function Sidebar( {todoList, toggleTodoList} ) {
         </button>
       ))}
 
-      <button>+ New List</button>
       <hr />
-      <h2>Topics</h2>
-      {topics.map((topic) => (
-        <button
-          key={topic}
-        >
-          {topic}
+
+      <div>
+        <input
+          type="text"
+          onChange={(e) => setNewList(e.target.value)}
+          value={newList}
+          placeholder="Enter the title of your todo list..."
+        />
+        <button onClick={(e) => {
+          addFunction(e, newList);
+          setNewList("");
+       }}
+      >
+        Add
         </button>
-      ))}
-      <button>+ New Topic</button>
+      </div>
+
+      <button>+ New List</button>
+
     </div>
   );
 }
