@@ -3,6 +3,7 @@ import { useState } from "react";
 function Sidebar( {todoList, toggleTodoList, addFunction} ) {
 
   const [newList, setNewList] = useState("")
+  const [addList, setAddList] = useState(false);
 
   return (
     <div className="sidebar">
@@ -20,12 +21,13 @@ function Sidebar( {todoList, toggleTodoList, addFunction} ) {
 
       <hr />
 
-      <div>
+      <button onClick={() => {setAddList(!addList)}}>+ New List</button>
+      <div className={addList ? "add-list-cont viz" : "add-list-cont"}>
         <input
           type="text"
           onChange={(e) => setNewList(e.target.value)}
           value={newList}
-          placeholder="Enter the title of your todo list..."
+          placeholder="Enter title of todo list..."
         />
         <button onClick={(e) => {
           addFunction(e, newList);
@@ -35,8 +37,6 @@ function Sidebar( {todoList, toggleTodoList, addFunction} ) {
         Add
         </button>
       </div>
-
-      <button>+ New List</button>
 
     </div>
   );
