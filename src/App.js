@@ -14,6 +14,8 @@ export default function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [todoList, setTodoList] = useState("");
+  const [currentList, setCurrentList] = useState("")
+
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
@@ -48,8 +50,6 @@ export default function App() {
     fetchTodoLists();
 
   }, []);
-
-  console.log(todoList);
 
   //delete item from todo list
   function deleteToDo(id) {
@@ -109,13 +109,17 @@ export default function App() {
       updatedTodoList.toggled = !updatedTodoList.toggled;
     }
 
-    setTodoList(todoList.map((list) => (list.id === listId ?
+    const newTodoList = todoList.map((list) => (list.id === listId ?
       updatedTodoList :
       {
         content: list.content,
         toggled: false,
+        id: list.id,
       }
-      )));
+      ));
+    setTodoList(newTodoList);
+    setCurrentList(updatedTodoList.content)
+
   }
 
   async function addTodoList(e, name) {
@@ -131,6 +135,8 @@ export default function App() {
       setError(error);
     }
   }
+
+  console.log(currentList);
 
   return (
     <div className="app-container">
