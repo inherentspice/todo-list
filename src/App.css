@@ -157,6 +157,18 @@ input:checked + .slider:before {
   background-color: var(--color-primary);
 }
 
+.add-list-cont input {
+  height: 35px;
+}
+
+.add-list-cont {
+  display: none;
+}
+
+.viz {
+  display: flex !important;
+}
+
 /* list of todos */
 
 .list-todos {
