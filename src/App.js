@@ -14,12 +14,12 @@ export default function App() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [todoList, setTodoList] = useState("");
-  const [currentList, setCurrentList] = useState("")
 
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
     const fetchData = async () => {
+      let currentTodoList;
       try {
         // fetch todo lists
         const todoListResponse = await TodoListService.getAll();
@@ -27,18 +27,16 @@ export default function App() {
 
         // set the current list to the first item in the todo list array
         if (todoListResponse.data.length > 0) {
-          const currentTodoList = todoListResponse.data[0];
+          currentTodoList = todoListResponse.data[0];
           currentTodoList.toggled = true;
-          setCurrentList(currentTodoList.name);
         } else {
           // create a new todo list if there are none on record
-          const newTodoList = {name: "Main", toggled: true};
+          const newTodoList = {content: "Main", toggled: true};
           await TodoListService.create(newTodoList);
-          setCurrentList("Main");
         }
 
         // fetch todos for the current list
-        const todoResponse = await TodoService.getAll(currentList);
+        const todoResponse = await TodoService.getAll(currentTodoList.content);
         if (!todoResponse.data.length) {
           const newTodo = {content: "Write your first todo!", priority: "green", isDone: false};
           setTodos(newTodo);
@@ -106,26 +104,42 @@ export default function App() {
   }
 
   // toggle the active todolist
-  function toggleTodoList(listId) {
+  async function toggleTodoList(listId) {
+    setLoading(true);
+    try {
+      // toggle the todolist
+      const updatedTodoList = todoList.map(item => {
+        if (item.id === listId) {
+          item.toggled = true;
+        } else {
+          item.toggled = false;
+        }
+        return item;
+      });
+      setTodoList(updatedTodoList);
 
-    const updatedTodoList = todoList.find((list) => list.id === listId);
-
-    if (updatedTodoList) {
-      updatedTodoList.toggled = !updatedTodoList.toggled;
-    }
-
-    const newTodoList = todoList.map((list) => (list.id === listId ?
-      updatedTodoList :
-      {
-        content: list.content,
-        toggled: false,
-        id: list.id,
+      // fetch todos for the current list
+      const currList = updatedTodoList.find(item => item.toggled).content
+      const todoResponse = await TodoService.getAll(currList);
+      if (todoResponse.data.length) {
+        // set the todos state from the data returned by the API call
+        setTodos(todoResponse.data);
+      } else {
+        // create a new todo
+        const newTodo = {content: "Write your first todo!", priority: "green", isDone: false, list: currList};
+        await TodoService.create(newTodo);
+        // get the updated list of todos from the API
+        const updatedTodosResponse = await TodoService.getAll(currList);
+        // set the todos state from the updated data returned by the API call
+        setTodos(updatedTodosResponse.data);
       }
-      ));
-    setTodoList(newTodoList);
-    setCurrentList(updatedTodoList.content)
-
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   }
+
 
   async function addTodoList(e, name) {
     e.preventDefault();
