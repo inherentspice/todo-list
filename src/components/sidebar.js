@@ -10,6 +10,7 @@ function Sidebar( {todoList, toggleTodoList, addFunction} ) {
       {/* loop over each todoList and map them onto buttons */}
       {Array.from(todoList).map((listItem) => (
         <button
+          key={listItem.id}
           className={listItem.toggled ? 'active-list' : ''}
           onClick={() => toggleTodoList(listItem.id)}
           >
