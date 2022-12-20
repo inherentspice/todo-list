@@ -19,15 +19,32 @@ export default function App() {
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
-    const fetchTodos = async () => {
+    const fetchData = async () => {
       try {
-        const response = await TodoService.getAll();
-        if (!response.data.length) {
+        // fetch todo lists
+        const todoListResponse = await TodoListService.getAll();
+        setTodoList(todoListResponse.data);
+
+        // set the current list to the first item in the todo list array
+        if (todoListResponse.data.length > 0) {
+          const currentTodoList = todoListResponse.data[0];
+          currentTodoList.toggled = true;
+          setCurrentList(currentTodoList.name);
+        } else {
+          // create a new todo list if there are none on record
+          const newTodoList = {name: "Main", toggled: true};
+          await TodoListService.create(newTodoList);
+          setCurrentList("Main");
+        }
+
+        // fetch todos for the current list
+        const todoResponse = await TodoService.getAll(currentList);
+        if (!todoResponse.data.length) {
           const newTodo = {content: "Write your first todo!", priority: "green", isDone: false};
           setTodos(newTodo);
           await TodoService.create(newTodo);
         } else {
-          setTodos(() => response.data);
+          setTodos(todoResponse.data);
         }
       } catch (error) {
         setError(error);
@@ -35,21 +52,9 @@ export default function App() {
         setLoading(false);
       }
     };
-    fetchTodos();
+    fetchData();
   }, []);
 
-  useEffect(() => {
-    const fetchTodoLists = async () => {
-      try {
-        const response = await TodoListService.getAll();
-        setTodoList(() => response.data)
-      } catch (error) {
-        setError(error);
-      }
-    }
-    fetchTodoLists();
-
-  }, []);
 
   //delete item from todo list
   function deleteToDo(id) {
@@ -135,8 +140,6 @@ export default function App() {
       setError(error);
     }
   }
-
-  console.log(currentList);
 
   return (
     <div className="app-container">

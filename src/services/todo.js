@@ -1,12 +1,12 @@
 import axios from "axios"
 const baseUrl = "/api/todos"
 
-const getAll = () => {
+const getAll = (listName) => {
+  if (listName) {
+    return axios.get(`${baseUrl}?list=${listName}`)
+  } else {
   return axios.get(baseUrl)
-}
-
-const getOne = id => {
-  return axios.get(`${baseUrl}/${id}`)
+  }
 }
 
 const create = newObject => {
@@ -23,7 +23,6 @@ const deleteOne = id => {
 
 export default {
   getAll,
-  getOne,
   create,
   update,
   deleteOne
