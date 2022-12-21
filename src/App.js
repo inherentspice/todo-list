@@ -23,6 +23,7 @@ export default function App() {
       try {
         // fetch todo lists
         const todoListResponse = await TodoListService.getAll();
+        console.log(todoListResponse.data)
         setTodoList(todoListResponse.data);
 
         // set the current list to the first item in the todo list array
@@ -155,10 +156,40 @@ export default function App() {
     }
   }
 
+  // This function removes the list from the backend, and the todo notes corresponding to it
+  async function removeTodoList() {
+    const activeList = todoList.filter((list) => list.toggled === true)[0];
+    const alertResponse = window.confirm(`Are you sure you want to delete ${activeList.content}?`)
+
+    if (alertResponse) {
+      TodoListService.deleteOne(activeList.id)
+        .then(response => {
+          const todoListsFiltered = todoList.filter((list) => list.id !== activeList.id);
+          setTodoList(todoListsFiltered);
+        })
+        .catch(error => {
+          setError(error);
+        });
+
+      TodoService.deleteMany(activeList.content)
+        .then(response => {
+          setTodos("");
+        })
+        .catch(error => {
+          setError(error);
+        })
+    }
+  }
+
   return (
     <div className="app-container">
       <Header />
-      <Sidebar todoList={todoList} toggleTodoList={toggleTodoList} addFunction={addTodoList}/>
+      <Sidebar
+        todoList={todoList}
+        toggleTodoList={toggleTodoList}
+        addFunction={addTodoList}
+        removeTodoList={removeTodoList}
+        />
       <AddTodo addFunction={addToDo} />
       {error && <ErrorMessage message={error.message} />}
       {loading && <LoadingIndicator />}

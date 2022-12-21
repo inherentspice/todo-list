@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Sidebar( {todoList, toggleTodoList, addFunction} ) {
+function Sidebar( {todoList, toggleTodoList, addFunction, removeTodoList} ) {
 
   const [newList, setNewList] = useState("")
   const [addList, setAddList] = useState(false);
@@ -10,13 +10,14 @@ function Sidebar( {todoList, toggleTodoList, addFunction} ) {
       <h2>Todo Lists</h2>
       {/* loop over each todoList and map them onto buttons */}
       {Array.from(todoList).map((listItem) => (
-        <button
-          key={listItem.id}
-          className={listItem.toggled ? 'active-list' : ''}
-          onClick={() => toggleTodoList(listItem.id)}
-          >
-          {listItem.content}
-        </button>
+
+          <button
+            key={listItem.id}
+            className={listItem.toggled ? 'active-list' : ''}
+            onClick={() => toggleTodoList(listItem.id)}
+            >
+            {listItem.content}
+          </button>
       ))}
 
       <hr />
@@ -36,8 +37,11 @@ function Sidebar( {todoList, toggleTodoList, addFunction} ) {
       >
         Add
         </button>
-      </div>
 
+      </div>
+      <button onClick={() => removeTodoList()}>
+        - Remove List
+      </button>
     </div>
   );
 }
