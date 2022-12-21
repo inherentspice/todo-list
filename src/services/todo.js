@@ -21,9 +21,14 @@ const deleteOne = id => {
   return axios.delete(`${baseUrl}/${id}`)
 }
 
+const deleteMany = (listName) => {
+  return axios.delete(`${baseUrl}?list=${listName}`)
+}
+
 export default {
   getAll,
   create,
   update,
-  deleteOne
+  deleteOne,
+  deleteMany,
 }

@@ -169,6 +169,20 @@ input:checked + .slider:before {
   display: flex !important;
 }
 
+.sidebar>.sidebar-list-cont>.close-button {
+  color: #fff !important;
+  background-color: #f00 !important;
+  border: none;
+  border-radius: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
 /* list of todos */
 
 .list-todos {
