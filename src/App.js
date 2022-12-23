@@ -9,9 +9,11 @@ import './App.css';
 import ErrorMessage from "./components/error-message";
 import LoadingIndicator from "./components/loading-indicator";
 import Login from "./components/login";
+import SignUp from "./components/sign-up";
 
 export default function App() {
   const [user, setUser] = useState("")
+  const [signUp, setSignUp] = useState(false);
   const [todos, setTodos] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -183,10 +185,20 @@ export default function App() {
     }
   }
 
+  // log user out of the app
+  function logOut() {
+    setUser("");
+  }
+
+  function handleSignUpClick() {
+    setSignUp(!signUp);
+  }
+
   return (
     <div className="app-container">
-      <Header />
-      {!user && <Login />}
+      <Header loggedIn={user} logOut={logOut} signUp={signUp} navigate={handleSignUpClick}/>
+      {!user && !signUp && <Login />}
+      {!user && signUp && <SignUp />}
       {user && <Sidebar
         todoList={todoList}
         toggleTodoList={toggleTodoList}
