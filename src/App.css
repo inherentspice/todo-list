@@ -255,3 +255,44 @@ input:checked + .slider:before {
   border-radius: 4px;
   font-size: 14px;
 }
+
+/* login */
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid var(--color-primary-accent);
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-form label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: var(--color-primary);
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: -webkit-fill-available;
+  font-size: 16px;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  border: 1px solid var(--color-primary-accent);
+  border-radius: 4px;
+}
+
+.login-form input[type="submit"] {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px 16px;
+  margin-bottom: 8px;
+  color: var(--color-button-text);
+  background-color: var(--color-button);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+}

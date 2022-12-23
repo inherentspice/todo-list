@@ -8,8 +8,10 @@ import TodoListService from "./services/todoLists";
 import './App.css';
 import ErrorMessage from "./components/error-message";
 import LoadingIndicator from "./components/loading-indicator";
+import Login from "./components/login";
 
 export default function App() {
+  const [user, setUser] = useState("")
   const [todos, setTodos] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -184,16 +186,17 @@ export default function App() {
   return (
     <div className="app-container">
       <Header />
-      <Sidebar
+      {!user && <Login />}
+      {user && <Sidebar
         todoList={todoList}
         toggleTodoList={toggleTodoList}
         addFunction={addTodoList}
         removeTodoList={removeTodoList}
-        />
-      <AddTodo addFunction={addToDo} />
+        />}
+      {user && <AddTodo addFunction={addToDo} />}
       {error && <ErrorMessage message={error.message} />}
       {loading && <LoadingIndicator />}
-      {!loading && <ToDoList todos={todos} deleteToDo={deleteToDo} updateToDo={updateToDo} />}
+      {!loading && user && <ToDoList todos={todos} deleteToDo={deleteToDo} updateToDo={updateToDo} />}
     </div>
   )
 }
