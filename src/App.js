@@ -5,6 +5,7 @@ import Sidebar from "./components/sidebar";
 import Header from "./components/header";
 import TodoService from "./services/todo";
 import TodoListService from "./services/todoLists";
+import UserService from "./services/user";
 import './App.css';
 import ErrorMessage from "./components/error-message";
 import LoadingIndicator from "./components/loading-indicator";
@@ -27,7 +28,6 @@ export default function App() {
       try {
         // fetch todo lists
         const todoListResponse = await TodoListService.getAll();
-        console.log(todoListResponse.data)
         setTodoList(todoListResponse.data);
 
         // set the current list to the first item in the todo list array
@@ -190,14 +190,29 @@ export default function App() {
     setUser("");
   }
 
+  // navigate to sign up page
   function handleSignUpClick() {
     setSignUp(!signUp);
   }
 
+  // Submit user login info to the database for authentication
+  function handleUserLogin(event, username, password) {
+    event.preventDefault();
+    const userObject = {username: username, password: password};
+    console.log(username, password);
+    UserService.logIn(userObject)
+      .then(response => {
+        setUser(response.data.username)
+      })
+      .catch(error => {
+        setError(error.response.data);
+      })
+  }
+
   return (
     <div className="app-container">
-      <Header loggedIn={user} logOut={logOut} signUp={signUp} navigate={handleSignUpClick}/>
-      {!user && !signUp && <Login />}
+      <Header loggedIn={user} logOut={logOut} navigate={handleSignUpClick}/>
+      {!user && !signUp && <Login handleUserLogin={handleUserLogin}/>}
       {!user && signUp && <SignUp />}
       {user && <Sidebar
         todoList={todoList}
