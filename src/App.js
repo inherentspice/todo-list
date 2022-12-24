@@ -199,10 +199,22 @@ export default function App() {
   function handleUserLogin(event, username, password) {
     event.preventDefault();
     const userObject = {username: username, password: password};
-    console.log(username, password);
     UserService.logIn(userObject)
       .then(response => {
-        setUser(response.data.username)
+        setUser(response.data.username);
+      })
+      .catch(error => {
+        setError(error.response.data);
+      })
+  }
+
+  // Submit the newly created user to the database
+  function handleUserSignUp(event, username, password) {
+    event.preventDefault();
+    const userObject = {username: username, password: password};
+    UserService.signUp(userObject)
+      .then(response => {
+        setUser(response.data.username);
       })
       .catch(error => {
         setError(error.response.data);
@@ -213,7 +225,7 @@ export default function App() {
     <div className="app-container">
       <Header loggedIn={user} logOut={logOut} navigate={handleSignUpClick}/>
       {!user && !signUp && <Login handleUserLogin={handleUserLogin}/>}
-      {!user && signUp && <SignUp />}
+      {!user && signUp && <SignUp handleUserSignUp={handleUserSignUp}/>}
       {user && <Sidebar
         todoList={todoList}
         toggleTodoList={toggleTodoList}
