@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Login() {
+export default function Login( { handleUserLogin } ) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -12,14 +12,9 @@ export default function Login() {
     setPassword(event.target.value);
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("login!")
-    // Submit the form data to the server
-  }
   return (
     <div className="login-form-cont">
-      <form className="login-form" onSubmit={(event) => handleSubmit(event)}>
+      <form className="login-form" onSubmit={event => handleUserLogin(event, username, password)}>
         <label>
           Username:
           <input type="text" value={username} onChange={handleUsernameChange} />

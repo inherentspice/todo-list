@@ -19,6 +19,7 @@ export default function SignUp() {
   }
   return (
     <div className="login-form-cont">
+      <h2>Make an account!</h2>
       <form className="login-form" onSubmit={(event) => handleSubmit(event)}>
         <label>
           Username:
