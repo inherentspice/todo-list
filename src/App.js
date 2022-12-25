@@ -20,6 +20,19 @@ export default function App() {
   const [loading, setLoading] = useState(true);
   const [todoList, setTodoList] = useState("");
 
+  // useEffect to check if user is logged in
+  useEffect(() => {
+    UserService.isAuthenticated()
+      .then(response => {
+        setUser(response.data.user.username);
+      })
+      .catch(error => {
+        if (error.response.status === 401) {
+          return
+        }
+        setError(error);
+      })
+  }, [])
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
