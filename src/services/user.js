@@ -9,7 +9,12 @@ const signUp = (userObject) => {
   return axios.post("/sign-up", userObject);
 }
 
+const isAuthenticated = () => {
+  return axios.get("/api/user");
+}
+
 export default {
   logIn,
   signUp,
+  isAuthenticated,
 }
