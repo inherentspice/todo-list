@@ -9,6 +9,10 @@ const signUp = (userObject) => {
   return axios.post("/sign-up", userObject);
 }
 
+const logOut = () => {
+  return axios.get("/log-out");
+}
+
 const isAuthenticated = () => {
   return axios.get("/api/user");
 }
@@ -16,5 +20,6 @@ const isAuthenticated = () => {
 export default {
   logIn,
   signUp,
+  logOut,
   isAuthenticated,
 }
