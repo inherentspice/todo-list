@@ -46,16 +46,18 @@ export default function App() {
       try {
         // fetch todo lists
         const todoListResponse = await TodoListService.getAll();
-        setTodoList(todoListResponse.data);
 
         // set the current list to the first item in the todo list array
         if (todoListResponse.data.length > 0) {
+          setTodoList(todoListResponse.data);
           currentTodoList = todoListResponse.data[0];
           currentTodoList.toggled = true;
         } else {
           // create a new todo list if there are none on record
-          const newTodoList = {content: "Main", toggled: true};
-          await TodoListService.create(newTodoList);
+          currentTodoList = {content: "Main", toggled: true};
+          setTodoList([currentTodoList]);
+
+          await TodoListService.create(currentTodoList);
         }
 
         // fetch todos for the current list
