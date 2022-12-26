@@ -36,6 +36,7 @@ export default function App() {
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
+    setLoading(true)
     if (!user) {
       setLoading(false);
       return
@@ -238,7 +239,7 @@ export default function App() {
     const userObject = {username: username, password: password};
     UserService.signUp(userObject)
       .then(response => {
-        setUser(response.data.username);
+        setSignUp(false)
       })
       .catch(error => {
         setError(error.response.data);
