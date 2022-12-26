@@ -36,6 +36,10 @@ export default function App() {
 
   // useEffect to get the todos from the database if nothing in database, make a first todo
   useEffect(() => {
+    if (!user) {
+      setLoading(false);
+      return
+    }
     const fetchData = async () => {
       let currentTodoList;
       try {
@@ -69,7 +73,7 @@ export default function App() {
       }
     };
     fetchData();
-  }, []);
+  }, [user]);
 
 
   //delete item from todo list
@@ -103,11 +107,12 @@ export default function App() {
   function addToDo(e, name, color) {
     // prevent the form from submitting
     e.preventDefault()
-
+    const filteredTodoList = todoList.filter(list => list.toggled === true);
     // create a new todo object
     const newTodo = {
       content: name,
-      priority: color
+      priority: color,
+      list: filteredTodoList[0].content,
     };
 
     const createTodo = async () => {
