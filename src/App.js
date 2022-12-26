@@ -60,7 +60,7 @@ export default function App() {
         // fetch todos for the current list
         const todoResponse = await TodoService.getAll(currentTodoList.content);
         if (!todoResponse.data.length) {
-          const newTodo = {content: "Write your first todo!", priority: "green", isDone: false};
+          const newTodo = {content: "Write your first todo!", priority: "green", isDone: false, list: currentTodoList.content};
           setTodos(newTodo);
           await TodoService.create(newTodo);
         } else {
@@ -205,7 +205,13 @@ export default function App() {
 
   // log user out of the app
   function logOut() {
-    setUser("");
+    UserService.logOut()
+      .then(response => {
+        setUser("");
+      })
+      .catch(error => {
+        setError(error);
+      })
   }
 
   // navigate to sign up page
