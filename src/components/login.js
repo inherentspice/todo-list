@@ -21,7 +21,7 @@ export default function Login( { handleUserLogin } ) {
         </label>
         <label>
           Password:
-          <input type="text" value={password} onChange={handlePasswordChange} />
+          <input type="password" value={password} onChange={handlePasswordChange} />
         </label>
         <br />
         <input type="submit" value="Login" />
