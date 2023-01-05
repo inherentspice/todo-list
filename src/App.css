@@ -212,8 +212,8 @@ input:checked + .slider:before {
   width: 60%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: flex-start;
+  align-self: end;
 }
 
 /* add todo */
@@ -251,6 +251,7 @@ input:checked + .slider:before {
   justify-content: space-between;
   font-size: 16px;
   font-weight: 600;
+  max-width: 500px;
 }
 
 /* loading-indicator */
@@ -325,7 +326,7 @@ input:checked + .slider:before {
 }
 
 /* mobile */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   .title-image-cont>img {
     display: none;
   }
