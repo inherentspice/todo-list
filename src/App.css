@@ -323,3 +323,35 @@ input:checked + .slider:before {
 .login-form-cont {
   margin: 5rem;
 }
+
+/* mobile */
+@media only screen and (max-width: 600px) {
+  .title-image-cont>img {
+    display: none;
+  }
+
+  .add-todo-cont {
+    flex-direction: column;
+    align-self: center;
+  }
+
+  .sidebar {
+    width: 150px;
+  }
+
+  .list-todos {
+    align-self: flex-end;
+  }
+
+  .sidebar button {
+    padding: 4px;
+  }
+
+  .viz {
+    flex-direction: column;
+  }
+
+  .add-list-cont input {
+    height: 30px;
+  }
+}
