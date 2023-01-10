@@ -273,6 +273,11 @@ input:checked + .slider:before {
   color: var(--color-background);
 }
 
+.checked {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
 /* loading-indicator */
 .spinner {
   border: 16px solid #f3f3f3;
