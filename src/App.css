@@ -207,13 +207,18 @@ input:checked + .slider:before {
 
 /* list of todos */
 
-.list-todos {
+.list-todos-cont {
   height: 60%;
   width: 60%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+}
+
+.list-todos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 /* add todo */
@@ -251,6 +256,21 @@ input:checked + .slider:before {
   justify-content: space-between;
   font-size: 16px;
   font-weight: 600;
+}
+
+.delete-btn {
+  font-weight: bold;
+  padding: 4px 8px;
+  color: var(--color-primary);
+  background-color: var(--color-background);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  border-radius: 124px;
+}
+
+.delete-btn:hover {
+  background-color: var(--color-button);
+  color: var(--color-background);
 }
 
 /* loading-indicator */
@@ -325,6 +345,18 @@ input:checked + .slider:before {
 }
 
 /* mobile */
+
+@media only screen and (max-width: 1000px) {
+
+  .list-todos-cont {
+    margin-left: 100px;
+  }
+
+  .list-todos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media only screen and (max-width: 600px) {
   .title-image-cont>img {
     display: none;
@@ -339,8 +371,12 @@ input:checked + .slider:before {
     width: 150px;
   }
 
-  .list-todos {
+  .list-todos-cont {
     align-self: flex-end;
+  }
+
+  .list-todos {
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .sidebar button {

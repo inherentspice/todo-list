@@ -5,8 +5,8 @@ import SingleTodo from "./single-todo";
 
 export default function TodoList( { todos, deleteToDo, updateToDo } ) {
   return (
-    <div className="list-todos">
-      <ul style={{ listStyleType: "none", padding: 0 }}>
+    <div className="list-todos-cont">
+      <ul className="list-todos" style={{ listStyleType: "none", padding: 0 }}>
         {Array.from(todos).map((todo) => {
           return (
             <li key={todo.id} className="single-todo" style={{backgroundColor: todo.priority}}>
