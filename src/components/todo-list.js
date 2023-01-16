@@ -4,6 +4,7 @@ import SingleTodo from "./single-todo";
 // will just hardcode data
 
 export default function TodoList( { todos, deleteToDo, updateToDo } ) {
+
   return (
     <div className="list-todos-cont">
       <ul className="list-todos" style={{ listStyleType: "none", padding: 0 }}>
