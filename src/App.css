@@ -62,11 +62,19 @@ p {
 .title-image-cont {
   display: flex;
   align-items: center;
+  gap: 1rem;
+  margin-left: 1rem;
+}
+
+.title-image-cont>img {
+  border-radius: 50px;
+  border: 2px solid black;
 }
 
 .pages-color-cont {
   display: flex;
   gap: 0.5rem;
+  margin-right: 1rem;
 }
 
 .pages-color-cont>button {
@@ -271,6 +279,11 @@ input:checked + .slider:before {
 .delete-btn:hover {
   background-color: var(--color-button);
   color: var(--color-background);
+}
+
+.checked {
+  text-decoration: line-through;
+  opacity: 0.7;
 }
 
 /* loading-indicator */
